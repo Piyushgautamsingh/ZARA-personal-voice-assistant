@@ -6,7 +6,9 @@ import webbrowser
 import os
 from sys import exit
 from googlesearch import search
-import  googlesearch
+import urllib
+import re
+import time
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -15,6 +17,7 @@ engine.setProperty('voice', voices[1].id)
 
 def speak(audio):
     engine.say(audio)
+    time.sleep(4)
     engine.runAndWait()
 
 def wishME():
@@ -61,10 +64,6 @@ if __name__ == '__main__':
             speak(results)
             query = takeCommand().lower()
 
-        elif 'open youtube' in query:
-            webbrowser.open("https://www.youtube.com")
-            query = "quit"
-
         elif 'open google' in query:
             webbrowser.open("https://www.google.co.in")
             query = "go to sleep"
@@ -85,8 +84,9 @@ if __name__ == '__main__':
             os.startfile(os.path.join(music_dir, songs[0]))
             query = takeCommand().lower()
 
-        elif "what's the time" in query:
+        elif "time" in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
+            print(strTime)
             speak(f"Sir, the time is {strTime}")
             query = takeCommand().lower()
 
@@ -94,8 +94,6 @@ if __name__ == '__main__':
             s="Piyush"
             speak(f"Hey! Sexxy your name is{s}")
             query = takeCommand().lower()
-
-
         elif "go to sleep" in query:
             exit(0)
         elif "hello mom" in query:
@@ -107,8 +105,18 @@ if __name__ == '__main__':
             for url in search(query, tld="co.in", num=1, stop=1, pause=2):
                 webbrowser.open("https://google.com/search?q=%s" % query)
             exit(0)
+        elif 'youtube' in query:
+            speak('Ok!')
+            reg_ex = re.search('youtube (.+)', query)
+            if reg_ex:
+                domain = query.split("youtube", 1)[1]
+                query_string = urllib.parse.urlencode({"search_query": domain})
+                html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
+                search_results = re.findall(r'href=\"\/watch\?v=(.{11})',html_content.read().decode())
+                webbrowser.open("http://www.youtube.com/watch?v={}".format(search_results[0]))
+                pass
         else:
-            speak("Sorry I don't know that... you can it google.... just say google...")
+            speak("Sorry I don't know that... you can  google it")
             query = takeCommand().lower()
 
 
