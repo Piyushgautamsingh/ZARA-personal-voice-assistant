@@ -95,9 +95,7 @@ if __name__ == '__main__':
             speak(f"Hey! Sexxy your name is{s}")
             query = takeCommand().lower()
 
-        elif "do you know future" in query:
-            speak("Yes i know !...............Let me tell you one... ...in Future... Saif Ail khan..... will be IAS of India...... and HE will top in UPSE 2025........ that's sure")
-            query = takeCommand().lower()
+
         elif "go to sleep" in query:
             exit(0)
         elif "hello mom" in query:
