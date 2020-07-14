@@ -2,8 +2,8 @@
 (simple voice assistance using pyhton)
 <br>
 <br>
-Commands that "Zara" execute :
-"""You can use these commands and I'll help you out:
+Commands that "Zara" execute :<br>
+"""You can use these commands and I'll help you out:<br>
             1.  Say wikipedia your query<br>
             2.  Open Google<br>
             3.  Open Whatsapp<br>
