@@ -1,5 +1,6 @@
 # its ZARA personal voice assistant
 (simple voice assistance using pyhton)
+<br>
 Commands that "Zara" execute :
 """You can use these commands and I'll help you out:
             1.  Say wikipedia your query
